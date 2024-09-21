@@ -15,10 +15,11 @@ const BlogCard = ({ error,loading,categoryBlogs, slug, title, body, created_at, 
     const mouseEnter = () => {
         setHover(true)
     }
-
     const mouseLeave = () => {
         setHover(false)
     }
+
+   
     if (loading) return <h1>Loading</h1>
     if (error) return <h1>Error</h1>
     return (

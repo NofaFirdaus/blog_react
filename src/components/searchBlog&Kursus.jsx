@@ -9,7 +9,7 @@ const FormSearchAndSort = ({ kategori, selectedCategory, handleCategoryChange, p
             <form action="" className="w-full flex flex-col items-center">
                 <input
                     type="text"
-                    className="text-sm ring-[1.5px] w-[30%] px-4 ring-slate-950/40 focus:ring-slate-950 transition focus:ease-in ease-out h-[2.5rem] outline-none rounded-sm"
+                    className="text-sm ring-[1.5px] min-w-[41vw] px-4 ring-slate-950/40 focus:ring-slate-950 transition focus:ease-in ease-out h-[2.5rem] outline-none rounded-sm"
                     placeholder={placeholder}
                 />
             </form>

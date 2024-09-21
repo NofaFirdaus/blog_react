@@ -1,62 +1,61 @@
-import { Link,useNavigate } from "react-router-dom";
-import listSvg from "../assets/list.svg";
-import { useState, useEffect } from "react";
+import { Link,useNavigate } from "react-router-dom"
+import listSvg from "../assets/list.svg"
+import { useState, useEffect } from "react"
 
 const Navbar = () => {
-    const [isHidden, setHidden] = useState(true);
-    const [isNavbarVisible, setNavbarVisible] = useState(true);
-    const [lastScrollTop, setLastScrollTop] = useState(0);
-    const navigate = useNavigate();
+    const [isHidden, setHidden] = useState(true)
+    const [isNavbarVisible, setNavbarVisible] = useState(true)
+    const [lastScrollTop, setLastScrollTop] = useState(0)
+    const [url,setUrl] = useState(window.location.pathname)
+    const navigate = useNavigate()
 
     const handleFaqClick = () => {
-        navigate('/');
+        navigate('/')
     }
 
     const handleHidden = () => {
-        setHidden(prevState => !prevState);
-    };
+        setHidden(prevState => !prevState)
+    }
+
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollTop = window.scrollY;
-            const section2 = document.getElementById("start");
-            const section2Top = section2 ? section2.getBoundingClientRect().top + window.scrollY : 0;
+            const currentScrollTop = window.scrollY
+            const section2 = document.getElementById("start")
+            const section2Top = section2 ? section2.getBoundingClientRect().top + window.scrollY : 0
 
             if (currentScrollTop < lastScrollTop) {
-                // Scroll ke atas
-                setNavbarVisible(true);
+                setNavbarVisible(true)
             } else {
-                // Scroll ke bawah
                 if (currentScrollTop >= section2Top) {
-                    // Di section 2 atau lebih jauh
-                    setNavbarVisible(false);
+                    setNavbarVisible(false)
                 } else {
-                    // Di section 1 atau sebelum section 2
-                    setNavbarVisible(true);
+                    setNavbarVisible(true)
                 }
             }
 
-            setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop); // Untuk mencegah nilai negatif
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [lastScrollTop]);
-    useEffect(() => {
-        if (!isHidden) {
-            // Menambahkan kelas overflow-hidden ke elemen body ketika menu terbuka
-            document.body.classList.add('max-md:overflow-hidden');
-        } else {
-            // Menghapus kelas overflow-hidden dari elemen body ketika menu tertutup
-            document.body.classList.remove('max-md:overflow-hidden');
+            setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop) 
         }
 
-        // Membersihkan efek ketika komponen dilepas
+        window.addEventListener("scroll", handleScroll)
         return () => {
-            document.body.classList.remove('max-md:overflow-hidden');
-        };
-    }, [isHidden]);
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [lastScrollTop])
+    useEffect(() => {
+        if (!isHidden) {
+            document.body.classList.add('max-md:overflow-hidden')
+        } else {
+            document.body.classList.remove('max-md:overflow-hidden')
+        }
+
+        return () => {
+            document.body.classList.remove('max-md:overflow-hidden')
+        }
+    }, [isHidden])
+    useEffect(()=>{
+        setUrl(window.location.pathname)
+        
+    },[])
 
     return (
         <header className={`bg-port-gore-950 w-screen z-50 fixed top-0 h-[4rem] transition-transform duration-300 ${isNavbarVisible ? "translate-y-0" : "-translate-y-full"}`}>
@@ -73,11 +72,11 @@ const Navbar = () => {
                     <h1 className="font-semibold text-2xl">Logo</h1>
                 </div>
                 <ul className="flex flex-row items-center gap-8 cursor-pointer text-sm">
-                    <li className="max-md:hidden hover:opacity-40 transition ease-out hover:ease-in"><Link to="/">HOME</Link></li>
-                    <li className="max-md:hidden hover:opacity-40 transition ease-out hover:ease-in"><a href="#tentangKami" onClick={handleFaqClick}>TENTANG KAMI</a></li>
-                    <li className="max-md:hidden hover:opacity-40 transition ease-out hover:ease-in"><Link to="/kursus">KURSUS</Link></li>
-                    <li className="max-md:hidden hover:opacity-40 transition ease-out hover:ease-in"><a href="#faq" onClick={handleFaqClick} >FAQ</a></li>
-                    <li className="max-md:hidden hover:opacity-40 transition ease-out hover:ease-in"><Link to="/blog" >BLOG</Link></li>
+                    <li className={`${url == '/' ? 'opacity-70':'max-md:hidden hover:opacity-40 transition ease-out hover:ease-in'  } `}><Link to="/">HOME</Link></li>
+                    <li className={`${url == '/#tentangKami' ? 'opacity-70':'max-md:hidden hover:opacity-40 transition ease-out hover:ease-in'  } `}><a href="#tentangKami" onClick={handleFaqClick}>TENTANG KAMI</a></li>
+                    <li className={`${url == '/kursus' ? 'opacity-70':'max-md:hidden hover:opacity-40 transition ease-out hover:ease-in'  } `}><Link to="/kursus">KURSUS</Link></li>
+                    <li className={`${url == '/faq' ? 'opacity-70':'max-md:hidden hover:opacity-40 transition ease-out hover:ease-in'  } `}><a href="#faq" onClick={handleFaqClick} >FAQ</a></li>
+                    <li className={`${url == '/blog' ? 'opacity-70':'max-md:hidden hover:opacity-40 transition ease-out hover:ease-in'  } `}><Link to="/blog" >BLOG</Link></li>
                     <li>
                         <Link to="/login" className="hover:text-port-gore-950 hover:bg-slate-50 transition ease-out hover:ease-in ring-[1px] ring-slate-50 max-md:py-3 max-md:px-5 md:py-3 md:px-8 rounded-md">
                             Login
@@ -110,7 +109,7 @@ const Navbar = () => {
                 </div>
             </div>
         </header>
-    );
-};
+    )
+}
 
-export default Navbar;
+export default Navbar

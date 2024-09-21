@@ -182,9 +182,9 @@ const LandingPage = () => {
                 <section id="end" className="w-screen  md:px-[4.5rem] max-md:px-[3rem] mt-[6rem]">
                     <div className="max-lg:mb-[2.5rem] flex lg:flex-row max-lg:flex-col max-lg:gap-[0.4rem]  lg:justify-between mb-[2rem]">
                         <h1 className="max-xl:text-2xl  xl:text-3xl font-semibold">Blog, Berita dan Event</h1>
-                        <Link className="flex-row flex  hover:ease-in transition hover:opacity-50 items-center gap-3  opacity-85 text-slate-950 text-xs">Lihat Semua <img src={arrowDua} alt="" className="w-[0.9rem]" /></Link>
+                        <Link to='/blog' className="flex-row flex  hover:ease-in transition hover:opacity-50 items-center gap-3  opacity-85 text-slate-950 text-xs">Lihat Semua <img src={arrowDua} alt="" className="w-[0.9rem]" /></Link>
                     </div>
-                    <BlogLandingPageCard />
+                    {/* <BlogLandingPageCard /> */}
                 </section>
             </main >
             <Footer />

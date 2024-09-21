@@ -11,7 +11,7 @@ const Login = () => {
                     <h1 className="text-4xl font-Poppins font-semibold">Login</h1>
                     <p className="text-base">Persiapkan diri untuk masa depan yang penuh dengan bintang </p>
                     <div className="flex flex-col gap-[2rem] mt-7">
-                        <input className="focus:ring-slate-50   focus:ease-in transition ease-out outline-none bg-none text-slate-50 px-8 h-[3.5rem] bg-port-gore-950 ring-2 ring-slate-50/15 rounded-md " type="text" placeholder="email" />
+                        <input className="focus:ring-slate-50   focus:ease-in transition ease-out outline-none bg-none text-slate-50 px-8 h-[3.5rem] bg-port-gore-950 ring-2 ring-slate-50/15 rounded-md " type="text" placeholder="email atau username" />
                         <input className="focus:ring-slate-50   focus:ease-in transition ease-out outline-none bg-none text-slate-50 px-8 h-[3.5rem] bg-port-gore-950 ring-2 ring-slate-50/15 rounded-md " type="password" placeholder="password" />
                     </div>
                     <div className="flex flex-row items-center gap-4">
